@@ -1,0 +1,59 @@
+/* HTML */
+html {
+    position: relative;
+    min-height: 100%;
+}
+/* Header */
+.search-box {
+    width: 500px !important;
+}
+/* Login */
+.custom-login {
+    padding-top: 100px;
+}
+/* Home Page */
+.custom-product {
+    height: 1000px;
+}
+img.slider-img {
+    height: 400px !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.slider-text {
+    background-color: #00000040;
+}
+.slider-text:hover {
+    background-color: #00000080;
+}
+.trending-wrapper {
+    margin: 20px;
+}
+.trending-item {
+    float: left;
+    width: 20%;
+}
+.trending-img {
+    height: 250px;
+}
+.trending-text {
+    margin-right: 50px;
+}
+/* Detail */
+.detail-img {
+    height: 300px;
+}
+/* Footer */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    overflow:hidden;
+}
+/* Cart */
+.list-devider {
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}

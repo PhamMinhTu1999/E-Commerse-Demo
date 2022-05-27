@@ -1,0 +1,32 @@
+cd -path:"D:\PHP\Demo_1"
+
+php artisan serve
+
+php artisan make:migration create_users_table
+php artisan make:migration create_products_table
+php artisan make:migration create_cart_table
+php artisan make:migration create_orders_table
+php artisan migrate
+
+
+php artisan make:seeder UserSeeder
+php artisan db:seed --class UserSeeder
+
+php artisan make:seeder ProductSeeder
+php artisan db:seed --class ProductSeeder
+
+
+php artisan make:controller UserController
+php artisan make:controller ProductController
+
+
+php artisan make:middleware UserAuth
+
+
+php artisan make:model Product
+php artisan make:model Cart
+
+
+
+ALTER TABLE users AUTO_INCREMENT = 1
+ALTER TABLE products AUTO_INCREMENT = 1
