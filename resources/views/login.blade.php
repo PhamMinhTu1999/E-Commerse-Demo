@@ -1,6 +1,12 @@
 <?php
     $title = "Login";
 ?>
+@if(isset($exception))
+<script>
+    alert("Incorrect email or password");
+</script>
+@endif
+
 @extends("master")
 @section("content")
 <div class="container custom-login">

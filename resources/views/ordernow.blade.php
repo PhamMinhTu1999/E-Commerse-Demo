@@ -3,6 +3,11 @@
     $tax = 10;
     $delivery = 100000;
 ?>
+@if(isset($exception))
+    <script>
+        alert("Address and payment method are required");
+    </script>
+@endif
 
 @extends("master")
 @section("content")
@@ -41,8 +46,9 @@
                     <input type="radio" name="payment_method" value="paypal"><span>Paypal</span><br>
                     <input type="radio" name="payment_method" value="on_delivery"><span>On Delivery</span>
                 </div>
+                <input type="hidden" name="price" value="{{$price}}">
                 <button type="submit" class="btn btn-success">Order Now</button>
-              </form>
+            </form>
         </div>
     </div>
 </div>

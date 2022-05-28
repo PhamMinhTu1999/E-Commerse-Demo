@@ -74,10 +74,24 @@ class ProductController extends Controller
             ->join("products","cart.product_id","=","products.id")
             ->where("cart.user_id",$userID)
             ->sum("products.price");
-        return view("orderNow",["price"=>$totalPrice]);
+            if (Session::get("exception") == 1)
+            {
+                session()->forget("exception");
+                return view("orderNow",["price"=>$totalPrice, "exception"=>1]);
+            }
+            else
+            {
+                return view("orderNow",["price"=>$totalPrice]);
+            }
+        
     }
     function orderPlace(Request $req)
     {
+        if ($req->payment_method == null || $req->address == null)
+        {
+            session()->put("exception", 1);
+            return redirect("/orderNow");
+        }
         $userID = Session::get("user")["id"];
         $allCart = Cart::where("user_id",$userID)->get();
         foreach($allCart as $cart)

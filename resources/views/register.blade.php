@@ -1,6 +1,12 @@
 <?php
     $title = "Register";
 ?>
+@if(isset($exception))
+<script>
+    alert("All fields are required");
+</script>
+@endif
+
 @extends("master")
 @section("content")
 <div class="container custom-login">

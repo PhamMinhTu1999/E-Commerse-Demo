@@ -2,18 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class UserController extends Controller
 {
     function registerPage()
     {
-        return view("register");
+        if (Session::get("exception") == 1)
+            {
+                session()->forget("exception");
+                return view("register",["exception"=>1]);
+            }
+        else
+        {
+            return view("register");
+        }
     }
     function register(Request $req)
     {
+        if ($req->name == null || $req->email == null || $req->password == null)
+        {
+            session()->put("exception", 1);
+            return redirect("/register");
+        }
         $user = new User;
         $user->name = $req->name;
         $user->email = $req->email;
@@ -23,7 +37,15 @@ class UserController extends Controller
     }
     function loginPage()
     {
-        return view("login");
+        if (Session::get("exception") == 1)
+            {
+                session()->forget("exception");
+                return view("login",["exception"=>1]);
+            }
+        else
+        {
+            return view("login");
+        }
     }
     function login(Request $req)
     {
@@ -35,12 +57,13 @@ class UserController extends Controller
         }
         else
         {
-            return "Email and Password don't matched";
+            session()->put("exception", 1);
+            return redirect("/login");
         }
     }
     function logout(Request $req)
     {
-        $req->session()->forget("user");
+        session()->forget("user");
         return redirect("/");
     }
 }
