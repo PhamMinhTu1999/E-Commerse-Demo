@@ -1,4 +1,4 @@
-cd -path:"D:\PHP\Demo_1"
+cd -path:"D:\PHP\E-Commerse-Demo"
 
 php artisan serve
 
