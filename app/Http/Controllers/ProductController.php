@@ -14,7 +14,16 @@ class ProductController extends Controller
     function home()
     {
         $data = Product::all();
-        return view("product",["products"=>$data]);
+        if (Session::get("order") == 1)
+            {
+                session()->forget("order");
+                return view("product",["products"=>$data,"order"=>1]);
+            }
+        else
+        {   
+            return view("product",["products"=>$data]);
+        }
+        
     }
     function detail($id)
     {
@@ -106,6 +115,7 @@ class ProductController extends Controller
             $order->save();
         }
         Cart::where("user_id",$userID)->delete();
+        session()->put("order", 1);
         return redirect("/");
     }
     function myOrders()

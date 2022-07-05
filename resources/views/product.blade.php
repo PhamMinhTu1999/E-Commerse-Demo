@@ -1,6 +1,12 @@
 <?php
     $title = "Home";
 ?>
+@if(isset($order))
+<script>
+    alert("Order Completed");
+</script>
+@endif
+
 @extends("master")
 @section("content")
 <div class="custom-product">
